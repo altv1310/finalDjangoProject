@@ -1,0 +1,39 @@
+
+{% extends "./layout.html" %}
+{% block content %}
+    <div class="table-responsive">
+        <table class="table-condensed table-bordered table-striped">
+        <tr><th>Lab Name</th>
+            <th>Facility</th>
+            <th>Address</th>
+            <th>Zip</th>
+            <th>City</th>
+            <th>State</th>
+            <th>Country</th>
+            <th>Facility Type</th>
+            <th>Facility URL</th>
+            <th>POC Email</th>
+            <th>POC Phone #</th>
+            <th></th><th></th>
+        </tr>
+        {% for facility in facilities_list %}
+            <tr>
+                <td>{{ facility.laboratory_name }}</td>
+                <td>{{ facility.facility }}</td>
+                <td>{{ facility.address }}</td>
+                <td>{{ facility.zip_code }}</td>
+                <td>{{ facility.city }}</td>
+                <td>{{ facility.state }}</td>
+                <td>{{ facility.country }}</td>
+                <td>{{ facility.get_type_display }}</td>
+                <td>{{ facility.link }}</td>
+                <td>{{ facility.poc_email }}</td>
+                <td>{{ facility.poc_phone }}</td>
+                <td><a href={% url 'facilities_update' facility.id %}><button>Update</button></a></td>
+                <td><a href={% url 'facilities_delete' facility.id %}><button>Delete</button></a></td>
+            </tr>
+        {% endfor %}
+        </table>
+    </div>
+    <a href={% url 'facilities_create' %}><button>Add Facility</button></a>
+{% endblock %}
